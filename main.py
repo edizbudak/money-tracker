@@ -235,7 +235,7 @@ class MoneyTracker(QWidget):
         elif percentage < 100:
             self.lbl_status_message.setText("So close! Don't spend it on something stupid! 🔥")
         else:
-            self.lbl_status_message.setText("Mission accomplished! Time to celebrate! 🎊")
+            self.lbl_status_message.setText("You've officially reached your goal! 🎊")
 
 
 if __name__ == "__main__":
