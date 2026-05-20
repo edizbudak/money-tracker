@@ -12,19 +12,17 @@ class MoneyTracker(QWidget):
         self.setWindowTitle("MoneyTracker - Simple Goal Saver")
         self.resize(450, 600) 
         
-        # PENCERE KİMLİĞİ VE SABİT RENK PALETİ CSS TASARIMI
         self.setObjectName("MainWindow")
         self.setStyleSheet("""
             #MainWindow {
-                background-color: #d7ccc8; /* Temel mat bej/vizon tonu */
+                background-color: #d7ccc8;
             }
             QLabel {
-                color: #3e2723; /* Koyu kahve tonlarında okunaklı yazılar */
+                color: #3e2723;
                 font-weight: bold;
             }
         """)
 
-        # Veri Değişkenleri
         self.target_money = 0.0
         self.target_days = 1
         self.current_pool = 0.0
@@ -37,13 +35,11 @@ class MoneyTracker(QWidget):
         main_layout.setSpacing(15)
         main_layout.setContentsMargins(20, 20, 20, 20)
 
-        # 1. BAŞLIK
         title = QLabel("💰 MoneyTracker", self)
         title.setAlignment(Qt.AlignCenter)
         title.setStyleSheet("font-size: 28px; font-weight: bold; color: #3e2723; margin: 5px;")
         main_layout.addWidget(title)
 
-        # --- PARA BİRİMİ SEÇİM ALANI ---
         currency_layout = QHBoxLayout()
         currency_label = QLabel("Select Currency:", self)
         currency_label.setStyleSheet("font-size: 14px; color: #4e342e;")
@@ -52,7 +48,7 @@ class MoneyTracker(QWidget):
         self.currency_box.addItems(["TRY (₺)", "USD ($)", "EUR (€)", "GBP (£)"])
         self.currency_box.setStyleSheet("""
             QComboBox {
-                background-color: #8d6e63; /* Açık kahve tonu */
+                background-color: #8d6e63;
                 color: white;
                 padding: 6px;
                 border-radius: 5px;
@@ -66,7 +62,6 @@ class MoneyTracker(QWidget):
         currency_layout.addWidget(self.currency_box)
         main_layout.addLayout(currency_layout)
 
-        # --- HEDEF AYARLAMA ALANI (KUTUCUK KALDIRILDI) ---
         self.lbl_target_input = QLabel(f"Target Money ({self.currency_symbol}):")
         main_layout.addWidget(self.lbl_target_input)
         
@@ -99,13 +94,11 @@ class MoneyTracker(QWidget):
         btn_calculate.clicked.connect(self.setup_goal)
         main_layout.addWidget(btn_calculate)
 
-        # --- GÜNLÜK HEDEF YAZISI ---
         self.lbl_daily_target = QLabel("Daily Target: Waiting for setup...", self)
         self.lbl_daily_target.setAlignment(Qt.AlignCenter)
         self.lbl_daily_target.setStyleSheet("font-size: 16px; color: #3e2723; font-weight: bold;")
         main_layout.addWidget(self.lbl_daily_target)
 
-        # --- HAVUZ GÖSTERGESİ VE PROGRESS BAR ---
         self.lbl_pool_status = QLabel(f"Current Pool: 0.00 {self.currency_symbol} / 0.00 {self.currency_symbol}", self)
         self.lbl_pool_status.setAlignment(Qt.AlignCenter)
         self.lbl_pool_status.setStyleSheet("font-size: 18px; font-weight: bold; color: #3e2723;")
@@ -128,13 +121,10 @@ class MoneyTracker(QWidget):
         """)
         main_layout.addWidget(self.progress_bar)
 
-        # Durum Mesajı Bölümü
         self.lbl_status_message = QLabel("Set your goal to start saving! 💰", self)
         self.lbl_status_message.setAlignment(Qt.AlignCenter)
         self.lbl_status_message.setStyleSheet("color: #4e342e; font-style: italic; font-size: 14px;")
         main_layout.addWidget(self.lbl_status_message)
-
-        # --- PARA EKLEME / ÇIKARMA ALANI ---
         action_layout = QHBoxLayout()
         
         self.input_amount = QLineEdit()
@@ -245,7 +235,7 @@ class MoneyTracker(QWidget):
         elif percentage < 100:
             self.lbl_status_message.setText("So close! Don't spend it on something stupid! 🔥")
         else:
-            self.lbl_status_message.setText("Target Achieved! You are a money-saving guru! 👑")
+            self.lbl_status_message.setText("Mission accomplished! Time to celebrate! 🎊")
 
 
 if __name__ == "__main__":
